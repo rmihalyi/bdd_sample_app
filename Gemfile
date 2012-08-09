@@ -24,6 +24,10 @@ end
 
 gem 'jquery-rails'
 
+gem 'prawn', :git => "https://github.com/prawnpdf/prawn.git"
+gem 'prawn_rails'
+gem 'barby'
+
 group :test do
   gem 'capybara'
 end
