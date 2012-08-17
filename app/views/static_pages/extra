@@ -1,0 +1,24 @@
+cell_width = 80
+	row_height = 80
+	pieces = [ [logo, "BiotestMed", "text"] ]
+
+	pieces.each_with_index do |p,i|
+	  pdf.bounding_box [0, pdf.cursor], :height => row_height, :width => 50 do
+		pdf.stroke do
+		  pdf.line pdf.bounds.top_left,    pdf.bounds.top_right
+		  pdf.line pdf.bounds.bottom_left, pdf.bounds.bottom_right
+		end
+		pdf.move_down 1 # a bit of padding
+		cursor = pdf.cursor # keep current cursor value for all cells in this row
+		p.each_with_index do |v, j|
+		  p.bounding_box [cell_width*j, cursor], :height => row_height, :width => cell_width do
+			if j == 0 
+			  p.image open(v), :scale => 0.2
+			else
+			  p.text v, :size => 10 unless v.blank?
+			end
+		  end
+		end
+	  end
+
+	end

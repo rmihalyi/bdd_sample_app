@@ -1,0 +1,21 @@
+p.each_with_index do |v, j|
+		  pdf.bounding_box [cell_width*j, cursor], :height => row_height, :width => cell_width do
+		    if j == 0 # handle image column
+		      # might want logic here to handle empty/nil images
+		      pdf.image open(v), :scale => 0.4
+		    else
+		      pdf.text v, :size => 10 unless v.blank?
+		    end
+		  end
+		end
+		
+		
+			p.each_with_index do |v, j|
+		  pdf.bounding_box [cell_width*j, cursor], :height => row_height, :width => cell_width do
+		    if j == 0 
+		      pdf.image v, :position => :center, :scale => 0.2
+		    else
+		      pdf.text v, :align => :center, :size => 10 unless v.blank?
+		    end
+		  end
+		end
